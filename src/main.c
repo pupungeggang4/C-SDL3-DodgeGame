@@ -1,5 +1,5 @@
-#include "include/includes.h"
-#include "include/shape.h"
+#include "includes.h"
+#include "shape.h"
 
 int main(int argc, char** argv) {
     Rect2 rect = {{10.f, 10.f}, {20.f, 20.f}};
