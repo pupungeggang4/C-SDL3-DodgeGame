@@ -13,7 +13,7 @@ void initGame(Game* game) {
         return;
     }
 
-    // Creating window
+    // Creating window.
     if (!SDL_CreateWindowAndRenderer("SDL3 Bullet Dodge Game", 800, 600, SDL_WINDOW_RESIZABLE, &game->window, &game->renderer)) {
         SDL_Log("Failed to create window: %s", SDL_GetError());
         SDL_Quit();
