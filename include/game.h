@@ -6,7 +6,8 @@ typedef struct Game {
     SDL_Window* window;
     SDL_Renderer* renderer;
     Field field;
-    float delta;
+    float frameCurrent, framePrevious, delta;
     int gameOver;
     int running;
+    int pressLeft, pressRight, pressUp, pressDown;
 } Game;

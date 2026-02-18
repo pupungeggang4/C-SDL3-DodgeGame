@@ -5,5 +5,5 @@
 
 void handleTickBullet(Game*, Bullet*);
 void moveBullet(Game*, Bullet*);
-void checkCollideBullet(Game*, Bullet*, Player*);
+void collideCheckBullet(Game*, Bullet*, Player*);
 void renderBullet(Game*, Bullet*);

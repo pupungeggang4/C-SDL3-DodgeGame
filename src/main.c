@@ -3,8 +3,7 @@
 #include "gamehandler.h"
 
 int main(int argc, char** argv) {
-    Game game;
-    game.delta = 0.02;
+    Game game = {0};
     initGame(&game);
     quitGame(&game);
     return 0;

@@ -1,7 +1,8 @@
 #pragma once
 #include "field.h"
-#include "includes.h"
 
-void initField(Field* field);
-void handleTickField(Field* field);
+void initField(Field*);
+void handleTickField(Game*, Field*);
+void renderField(Game*, Field*);
+void spawnBullet(Field*);
 
