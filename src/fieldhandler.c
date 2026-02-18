@@ -4,6 +4,7 @@
 #include "fieldhandler.h"
 #include "includes.h"
 
+// Field init (When game started and restarted.)
 void initField(Field* field) {
     field->spawnInterval = 0.8f;
     field->spawnTimeLeft = 0.8f;
@@ -19,6 +20,7 @@ void initField(Field* field) {
     field->player.speed = 320.f;
 }
 
+// Handling frames of field.
 void handleTickField(Game* game, Field* field) {
     handleTickPlayer(game, &field->player);
     for (int i = 0; i < 50; i++) {
@@ -33,6 +35,7 @@ void handleTickField(Game* game, Field* field) {
     }
 }
 
+// Handling bullet spawn.
 void spawnBullet(Field* field) {
     for (int i = 0; i < 50; i++) {
         Bullet* bullet = &field->bullets[i];
@@ -65,6 +68,7 @@ void spawnBullet(Field* field) {
     }
 }
 
+// Field rendering function.
 void renderField(Game* game, Field* field) {
     SDL_SetRenderDrawColor(game->renderer, 0, 255, 255, 255);
     renderPlayer(game, &field->player);

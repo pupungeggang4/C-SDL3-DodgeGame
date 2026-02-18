@@ -1,21 +1,27 @@
 #include "gamehandler.h"
 #include "fieldhandler.h"
 
+// Starting game.
 void initGame(Game* game) {
     printf("%d\n", 4 > 5);
     printf("%d\n", 4 < 5);
     srand(time(0));
 
+    // Checking init.
     if (!SDL_Init(SDL_INIT_VIDEO)) {
         SDL_Log("Failed to initialize SDL: %s", SDL_GetError());
         return;
     }
 
-    if (!SDL_CreateWindowAndRenderer("SDL3 Bullet Dodge Game", 800, 600, 0, &game->window, &game->renderer)) {
+    // Creating window
+    if (!SDL_CreateWindowAndRenderer("SDL3 Bullet Dodge Game", 800, 600, SDL_WINDOW_RESIZABLE, &game->window, &game->renderer)) {
         SDL_Log("Failed to create window: %s", SDL_GetError());
         SDL_Quit();
         return;
     }
+
+    // Preserve the ratio when window size is changed.
+    SDL_SetRenderLogicalPresentation(game->renderer, 800, 600, SDL_LOGICAL_PRESENTATION_LETTERBOX);
 
     if (!SDL_SetRenderVSync(game->renderer, 1)) {
         SDL_Log("Failed to set vsync: %s", SDL_GetError());
@@ -23,6 +29,7 @@ void initGame(Game* game) {
         return;
     }
 
+    // Setting variables.
     game->running = 1;
     game->gameOver = 0;
     game->frameCurrent = 0.f;
@@ -33,6 +40,7 @@ void initGame(Game* game) {
     runGame(game);
 }
 
+// Running game and calculating delta.
 void runGame(Game* game) {
     while (game->running == 1) {
         game->frameCurrent = SDL_GetTicks();
@@ -44,12 +52,14 @@ void runGame(Game* game) {
     }
 }
 
+// Game logic every frame.
 void updateGame(Game* game) {
     if (game->gameOver == 0) {
         handleTickField(game, &game->field);
     }
 }
 
+// Rendering game.
 void renderGame(Game* game) {
     SDL_SetRenderDrawColor(game->renderer, 0, 0, 0, 255);
     SDL_RenderClear(game->renderer);
@@ -57,6 +67,7 @@ void renderGame(Game* game) {
     SDL_RenderPresent(game->renderer);
 }
 
+// Handling input.
 void handleInputGame(Game* game) {
     SDL_Event event;
 
@@ -103,6 +114,7 @@ void handleInputGame(Game* game) {
     }
 }
 
+// When game end.
 void quitGame(Game* game) {
     SDL_DestroyRenderer(game->renderer);
     SDL_DestroyWindow(game->window);
