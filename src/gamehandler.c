@@ -3,8 +3,6 @@
 
 // Starting game.
 void initGame(Game* game) {
-    printf("%d\n", 4 > 5);
-    printf("%d\n", 4 < 5);
     srand(time(0));
 
     // Checking init.
